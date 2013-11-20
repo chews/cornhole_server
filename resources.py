@@ -20,17 +20,18 @@ parser.add_argument('lon', type=float, required=False)
 
 class EventResourceCreator(Resource):
     def post(self):
+        now = datetime.now() # Timezone!!
         args = parser.parse_args()
-        event = PlantData.create(imei=args['imei'])
+        event = PlantData(imei=args['imei'])
         event.ph = args['ph']
         event.n = args['n']
         event.p = args['p']
         event.k = args['k']
         event.temp = args['temp']
         event.moisture = args['moisture']
-        event.lat = args['lan']
+        event.lat = args['lat']
         event.lon = args['lon']
-        event.created_at = DateTimeField()
+        event.created_at = datetime(now.year, now.month, now.day, 8)
         event.save()
         return event.to_json(), 201
 
