@@ -8,11 +8,15 @@ This file creates your application.
 
 import os
 from flask import Flask, render_template, request, redirect, url_for
+from flask.ext.restful import Api
+from biz import models
+
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
+api = Api(app)
 
 ###
 # Routing for your application.
@@ -28,6 +32,11 @@ def home():
 def about():
     """Render the website's about page."""
     return render_template('about.html')
+
+
+
+api.add_resource(EventResourceCreator, "/api/v1/event")
+api.add_resource(EventResourceMutator, "/api/v1/event/<int:event_id>")
 
 
 ###
