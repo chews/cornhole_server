@@ -1,28 +1,17 @@
-# ----------------------
-# Flask
-# ----------------------
-flask
+Flask==0.10.1
 Flask-RESTful==0.2.3
-Jinja2==2.7
+Jinja2==2.7.1
 MarkupSafe==0.18
-PIL==1.1.7
-Werkzeug==0.9.3
-blinker==1.2
-itsdangerous==0.22
+Werkzeug==0.9.4
+beatbox==20.0
+distribute==0.6.34
+gevent==0.13.8
+greenlet==0.4.1
+gunicorn==18.0
+hashlib==20081119
+itsdangerous==0.23
+mock==1.0.1
 mongoengine==0.8.3
 pymongo==2.5.2
 requests==1.2.3
 wsgiref==0.1.2
-
-
-# ----------------------
-# Testing
-# ----------------------
-mock
-
-
-# ----------------------
-# Production Server
-# ----------------------
-gevent
-gunicorn
