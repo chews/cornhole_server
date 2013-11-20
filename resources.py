@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from biz import models
+
 from flask.ext.restful import reqparse, abort, Resource
 from datetime import datetime
+from models import PlantData
 
 parser = reqparse.RequestParser()
 parser.add_argument('imei', type=str, required=False)
@@ -18,10 +19,7 @@ parser.add_argument('lon', type=float, required=False)
 
 
 class EventResourceCreator(Resource):
-
     def post(self):
-
-    created_at = DateTimeField()
         args = parser.parse_args()
         event = PlantData.create(imei=args['imei'])
         event.ph = args['ph']
@@ -32,6 +30,7 @@ class EventResourceCreator(Resource):
         event.moisture = args['moisture']
         event.lat = args['lan']
         event.lon = args['lon']
+        event.created_at = DateTimeField()
         event.save()
         return event.to_json(), 201
 

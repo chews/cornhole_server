@@ -9,8 +9,8 @@ This file creates your application.
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask.ext.restful import Api
-import resources
-
+from mongoengine import connect
+from resources import EventResourceCreator, EventEcho, EventResourceMutator
 
 app = Flask(__name__)
 
@@ -18,7 +18,7 @@ app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configur
 
 api = Api(app)
 
-connect('plantdata', host='ds053818.mongolab.com:53818/heroku_app19645568', port=27017)
+connect('plantdata', host='mongodb://mongostore:mongostore@ds053818.mongolab.com:53818/heroku_app19645568')
 
 ###
 # Routing for your application.
