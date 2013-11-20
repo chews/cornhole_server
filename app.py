@@ -9,7 +9,7 @@ This file creates your application.
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask.ext.restful import Api
-from biz import models
+import resources
 
 
 app = Flask(__name__)
@@ -17,6 +17,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'this_should_be_configured')
 
 api = Api(app)
+
+connect('plantdata', host='ds053818.mongolab.com:53818/heroku_app19645568', port=27017)
 
 ###
 # Routing for your application.
@@ -35,7 +37,8 @@ def about():
 
 
 
-api.add_resource(EventResourceCreator, "/api/v1/event")
+api.add_resource(EventResourceCreator, "/api/v1/plantview")
+api.add_resource(EventEcho, "/api/v1/echo")
 api.add_resource(EventResourceMutator, "/api/v1/event/<int:event_id>")
 
 
